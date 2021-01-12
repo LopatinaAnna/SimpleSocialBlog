@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>task24.BLL</name>
+        <name>SimpleSocialBlog.BLL</name>
     </assembly>
     <members>
         <member name="T:SimpleSocialBlog.BLL.DTO.ArticleDto">
