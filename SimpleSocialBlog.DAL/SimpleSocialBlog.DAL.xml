@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>task24.DAL</name>
+        <name>SimpleSocialBlog.DAL</name>
     </assembly>
     <members>
         <member name="T:SimpleSocialBlog.DAL.EF.DataContext">
