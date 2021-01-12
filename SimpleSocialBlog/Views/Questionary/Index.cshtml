@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Questionary";
+}
+@model SimpleSocialBlog.PL.Models.QuestionaryViewModel
+
+<section class="review-form">
+    <h3>Take the questionary!</h3>
+    @using (Html.BeginForm())
+    {
+        <section>
+            <p>Your name:</p>
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control input_name", @pattern = "^[A-Za-zА-Яа-яЁёІі\\s]+$", @required = true, @maxlength = "30", @minlength = "3" })
+        </section>
+        <section>
+            <p>Rate the site:</p>
+            <div class="form-check">
+                <label>@Html.RadioButtonFor(m => m.Rate, 5, new { @class = "form-check-input", @required = true }) 5</label>
+                <label>@Html.RadioButtonFor(m => m.Rate, 4, new { @class = "form-check-input", @required = true }) 4</label>
+                <label>@Html.RadioButtonFor(m => m.Rate, 3, new { @class = "form-check-input", @required = true }) 3</label>
+                <label>@Html.RadioButtonFor(m => m.Rate, 2, new { @class = "form-check-input", @required = true }) 2</label>
+                <label>@Html.RadioButtonFor(m => m.Rate, 1, new { @class = "form-check-input", @required = true }) 1</label>
+            </div>
+        </section>
+        <section>
+            <p>
+                <label>@Html.CheckBoxFor(m => m.Recommend, new { @class = "form-check-input", @checked = true }) I'll recommend this site to my friends</label>
+            </p>
+        </section>
+        @Html.ValidationSummary()
+        <button class="btn btn-light" type="submit">Send</button>
+    }
+</section>

@@ -1,0 +1,24 @@
+﻿@model SimpleSocialBlog.Models.IndexViewModel
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Manage";
+}
+
+<div>
+    <h3>@User.Identity.GetUserName()</h3>
+    <hr />
+    <div class="dl-horizontal">
+        <b>Password:</b>
+
+        [
+        @if (Model.HasPassword)
+        {
+            @Html.ActionLink("Change password", "ChangePassword")
+        }
+        else
+        {
+            @Html.ActionLink("Create", "SetPassword")
+        }
+        ]
+    </div>
+</div>

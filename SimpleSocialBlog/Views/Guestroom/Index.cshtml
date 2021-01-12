@@ -1,0 +1,37 @@
+﻿@model PagedList.IPagedList<SimpleSocialBlog.PL.Models.ReviewViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Guestroom";
+}
+<section class="review-form">
+    <h3>Leave your review here!</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("Name", "", new { @class = "form-control input_name ", @placeholder = "Your name", @pattern = "^[A-Za-zА-Яа-яЁёІі\\s]+$", @required = true, @maxlength = "30", @minlength = "3" })
+        @Html.TextArea("Text", "", new { @class = "form-control input_review", @required = true, @maxlength = "300", @minlength = "3" })
+        @Html.ValidationSummary()
+        <button class="btn btn-light" type="submit">Send</button>
+    }
+</section>
+
+<section class="reviews">
+    @foreach (var item in Model)
+    {
+        <section>
+            <h3>@item.Name</h3>
+            <h6>@item.Date.ToShortDateString()</h6>
+            <p>@item.Text</p>
+        </section>
+    }
+</section>
+
+<br />
+
+@if (@Model.PageCount > 1)
+{
+    <div class="page-number">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+}

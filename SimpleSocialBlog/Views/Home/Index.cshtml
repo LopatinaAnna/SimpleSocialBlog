@@ -1,0 +1,60 @@
+﻿@model PagedList.IPagedList<SimpleSocialBlog.PL.Models.ArticleViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (ViewBag.TagName == null)
+{
+<div class="header">
+    <h5>Sort articles by:</h5>
+    @using (Html.BeginForm("GetSort", "Home", FormMethod.Post))
+    {
+        <input type="submit" name="sort_type" class="btn btn-light" value="Title Asc" />
+        <input type="submit" name="sort_type" class="btn btn-light" value="Title Desc" />
+        <input type="submit" name="sort_type" class="btn btn-light" value="Date Asc" />
+        <input type="submit" name="sort_type" class="btn btn-light" value="Date Desc" />
+    }
+</div>
+}
+else
+{
+    <h4>Results by tag &laquo;@ViewBag.TagName&raquo;</h4>
+}
+@foreach (var item in Model)
+{
+    <section>
+        <h3>@item.Title</h3>
+        <form method="post">
+            <div class="tags">
+                @foreach (var tag in @item.Tags)
+                {
+                    <input type="submit" name="tag_name" class="tag btn btn-danger btn-rounded btn-xs" value="@tag">
+                }
+            </div>
+        </form>
+        <h6>@item.Date.ToShortDateString()</h6>
+        @if (@item.Text.Length > 201)
+        {
+            <input type="checkbox" class="read-more-state" id="post-@item.Title" />
+            <p class="read-more-wrap">
+                @item.Text.Substring(0, 200)<span class="read-more-target">@item.Text.Substring(200)</span>
+            </p>
+            <label for="post-@item.Title" class="read-more-trigger"></label>
+        }
+        else
+        {
+            <p>@item.Text</p>
+        }
+    </section>
+}
+
+<br />
+@if (@Model.PageCount > 1)
+{
+    <div class="page-number">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+}

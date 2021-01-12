@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="review-form">
+    <h3>Remove article</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("Title", "", new { @class = "form-control input_name ", @placeholder = "Title of article to remove", @pattern = "^[A-Za-zА-Яа-яЁёІі1-9\\s]+$", @required = true, @maxlength = "30", @minlength = "3" })
+        <br /><input class="btn btn-light" type="submit" value="Remove" />
+    }
+</section>

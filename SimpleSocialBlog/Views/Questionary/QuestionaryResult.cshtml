@@ -1,0 +1,22 @@
+﻿@model SimpleSocialBlog.PL.Models.QuestionaryViewModel
+
+@{
+    ViewBag.Title = "QuestionaryResult";
+}
+
+<br />
+<h4><b>@Html.DisplayFor(m => m.Name)</b>, thanks for answers!</h4>
+<p>
+    Your rate is <b>@Html.DisplayFor(m => m.Rate)</b>
+
+    @if (Model.Recommend)
+    {
+        <label>and you will recommend this site to friends</label>
+    }
+    else
+    {
+        <label>and you will not recommend this site to friends</label>
+    }
+</p>
+<br />
+<i>Now rate of site is @ViewBag.SiteRate</i>

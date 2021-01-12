@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="review-form">
+    <h3>Create new article!</h3>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("Title", "", new { @class = "form-control input_name ", @placeholder = "Title", @pattern = "^[A-Za-zА-Яа-яЁёІі1-9\\s]+$", @required = true, @maxlength = "30", @minlength = "3" })
+        @Html.TextArea("Text", "", new { @class = "form-control input_review", @required = true, @maxlength = "1000", @minlength = "15" })
+        @Html.ValidationSummary()
+        <button class="btn btn-light" type="submit">Send</button>
+    }
+</section>
